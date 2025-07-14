@@ -1,5 +1,3 @@
-import random
-
 # Card class represents a single letter card with a point value.
 class Card:
     def __init__(self, letter, points):
@@ -57,6 +55,7 @@ class Player:
         self.name = name  
         self.hand = []  
         self.score = 0  
+
     def draw_card(self, deck):
         card = deck.deal_card()  
         if card:
@@ -64,15 +63,27 @@ class Player:
 
     def play_word(self, word):
         points = 0  # Points earned for the word
+        used_jokers = 0  # Track how many jokers are used
+
         for letter in word:
-            for card in self.hand:
-                if card.letter == letter or card.letter == 'JOKER':  
-                    points += card.points 
-                    self.hand.remove(card) 
-                    break
+            if letter == '_':  # If it's a joker (underscore)
+                if used_jokers < self.hand.count('JOKER'):  # Check if the player has joker cards
+                    points += 0  # Joker doesn't add points
+                    used_jokers += 1  # Mark joker as used
+                    self.hand.remove('JOKER')  # Remove one joker from the hand
+                else:
+                    print(f"Cannot play word '{word}', missing joker card.")
+                    return 0  # Word is not valid
             else:
-                print(f"Cannot play word '{word}', missing letter '{letter}'")  # If letter is not found
-                return 0  # Word is not valid
+                for card in self.hand:
+                    if card.letter == letter or card.letter == 'JOKER':  # Match the letter or joker
+                        points += card.points
+                        self.hand.remove(card)
+                        break
+                else:
+                    print(f"Cannot play word '{word}', missing letter '{letter}'")  # If letter is not found
+                    return 0  # Word is not valid
+
         self.score += points  # Add points to the player's score
         return points
 
@@ -103,7 +114,7 @@ class WordGame:
             print(f"\n{current_player.name}'s turn")  
             print(current_player)
 
-            word = input("Enter a word to play or 'draw' to pick a card: ").upper()  
+            word = input("Enter a word to play (use '_' for joker) or 'draw' to pick a card: ").upper()  
             if word == 'DRAW':
                 current_player.draw_card(self.deck)  
             else:
@@ -128,7 +139,7 @@ class WordGame:
 if __name__ == "__main__":
     print("Welcome to the Word Game!")
     print("Each player takes turns to either play a word using their cards or type 'DRAW' to pick a card.")
-    print("You can use a 'JOKER' card as any letter if it is in your deck, and each card has a point value.")
+    print("You can use a 'JOKER' card as any letter by typing '_' in place of the joker letter.")
     print("The game ends when a player runs out of cards. The player with the highest score wins!\n")
     
     player_names = input("Enter player names separated by commas: ").split(',')

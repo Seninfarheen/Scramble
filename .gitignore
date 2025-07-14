@@ -1,1 +1,9 @@
-Library/Saved Application State/com.installbuilder.appinstaller.savedState/
+pycache/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+*.env
+.vscode/
