@@ -1,52 +1,88 @@
-# Python Word Game
+# My Python Word Game
 
-## Overview
+This repository contains a simple word game developed in Python, demonstrating both a console-based version and a modern web application built with Streamlit.
 
-This project implements a text-based, multiplayer word game designed to be played in the terminal. Players draw letter cards from a custom deck, form words to score points, and aim to be the first to empty their hand or have the highest score when the game concludes. The game includes features like variable letter point values, letter frequencies, and the use of joker cards.
+## Project Overview
 
-## Features
+This game allows players to draw letter cards and form valid English words to score points. The goal is to be the first to clear your hand of cards. Jokers act as wildcards.
 
-* **Custom Deck:** A deck is generated with specific frequencies and point values for letters (including common vowels, common consonants, rare consonants, and multiple joker cards).
-* **Card Management:** Players can draw cards from the deck and play words using the cards in their hand.
-* **Joker Support:** Joker cards (represented by `JOKER` in hand and `_` when playing a word) can be used as any letter.
-* **Scoring System:** Points are awarded based on the letter values of the cards used in a valid word.
-* **Multiplayer Gameplay:** Supports multiple players who take turns.
-* **Win Condition:** The game ends when a player successfully plays all cards from their hand. Remaining points in other players' hands are subtracted from their scores at the end of the game.
+## Two Ways to Play:
 
-## How to Play
+This project offers two distinct ways to experience the game:
 
-1.  **Run the Game:** Execute the `scramble_main.py` script from your terminal.
-2.  **Enter Player Names:** You will be prompted to enter the names of the players, separated by commas.
-3.  **Draw/Play:** Each player starts with 7 cards. On your turn, you can either:
-    * Type a `word` using the letters in your hand (use `_` for a joker).
-    * Type `DRAW` to pick an additional card from the deck.
-4.  **Scoring:** Points are automatically calculated and added to your score when you play a valid word.
-5.  **Winning:** The game continues until one player successfully plays all cards from their hand. That player wins, and remaining points in other players' hands are deducted.
+### 1. Web Application (Streamlit)
 
-## Installation and Setup
+`app.py` is the Streamlit-powered web application version of the game. It provides a graphical user interface (GUI) that runs in your web browser, making it more interactive and visually appealing.
 
-This project uses standard Python libraries. No external dependencies are required.
+**Features:**
+* Interactive user interface with turn-based gameplay.
+* Clear display of player hands and scores.
+* Real-time feedback on word validity and card availability.
+* Automatic handling of Joker cards as wildcards (if available in hand).
+* Easy turn management (Play Word / Draw Card).
+* Automatic clearing of input fields and turn progression.
+* Game over screen with final scores.
 
-1.  **Clone the repository:**
+**How to Run the Web App Locally:**
+
+1.  **Ensure you have Python installed.**
+2.  **Install Streamlit:**
     ```bash
-    git clone [https://github.com/YourUsername/Python-Word-Game.git](https://github.com/YourUsername/Python-Word-Game.git)
-    cd Python-Word-Game
+    pip install streamlit
     ```
-    (Replace `YourUsername` and `Python-Word-Game` with your actual GitHub username and repository name.)
-
-2.  **Ensure you have Python installed:**
-    This game requires Python 3. You can check your Python version with:
+3.  **Make sure you have the `words.txt` file** (containing a list of valid English words) in the same directory as `app.py`.
+4.  **Navigate to your project directory** in your terminal.
+5.  **Run the Streamlit app:**
     ```bash
-    python --version
-    # or
-    python3 --version
+    streamlit run app.py
     ```
+    Your browser should automatically open to the app.
 
-## How to Run
+---
 
-Execute the main script from your terminal:
+### 2. Console-Based Game
 
-```bash
-python scramble_main.py
-# or
-python3 scramble_main.py
+`scramble_main.py` is the original command-line interface (CLI) version of the game. It runs directly in your terminal, providing a text-based interactive experience.
+
+**Features:**
+* Text-based gameplay in the terminal.
+* Basic turn-based interaction.
+* Fundamental game logic (drawing cards, playing words, scoring).
+* Supports Joker card usage (by typing `_` in place of the joker letter).
+
+**How to Run the Console Game Locally:**
+
+1.  **Ensure you have Python installed.**
+2.  **Make sure you have the `words.txt` file** (containing a list of valid English words) in the same directory as `scramble_main.py`.
+3.  **Navigate to your project directory** in your terminal.
+4.  **Run the Python script:**
+    ```bash
+    python scramble_main.py
+    ```
+    Follow the prompts in your terminal.
+
+---
+
+## Requirements
+
+To run either version of the game, you'll need:
+
+* Python 3.x
+* A `words.txt` file containing a list of valid English words. This word list is sourced from [dwyl/english-words](https://github.com/dwyl/english-words/blob/master/words.txt).
+
+For the **Streamlit Web App** (`app.py`), you also need:
+
+* `streamlit` library (install via `pip install streamlit`)
+
+The `requirements.txt` file in this repository lists the necessary Python packages for the Streamlit app.
+
+---
+
+## Files in this Repository
+
+* `app.py`: The main Streamlit web application.
+* `scramble_main.py`: The original console-based game script.
+* `words.txt`: The dictionary file used for word validation.
+* `requirements.txt`: Lists Python dependencies for Streamlit deployment.
+
+---
