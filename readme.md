@@ -14,6 +14,9 @@ This project offers two distinct ways to experience the game:
 
 `app.py` is the Streamlit-powered web application version of the game. It provides a graphical user interface (GUI) that runs in your web browser, making it more interactive and visually appealing.
 
+**Live Demo:** [https://scramble-senin.streamlit.app/](https://scramble-senin.streamlit.app/)
+
+
 **Features:**
 * Interactive user interface with turn-based gameplay.
 * Clear display of player hands and scores.
